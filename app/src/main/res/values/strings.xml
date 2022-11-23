@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Журнал преподавателя</string>
+
+    <string name="schedule_item">Расписание звонков</string>
+    <string name="import_item">Импорт в базу данных</string>
+    <string name="clear_item">Очистка базы данных</string>
+
+    <string name="groups">Группы</string>
+    <string name="disciplines">Дисциплины</string>
+    <string name="students">Отметить студентов</string>
+    <string name="marks">Проставить баллы</string>
+    <string name="journals">Формирование журналов</string>
 </resources>
