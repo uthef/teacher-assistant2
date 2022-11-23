@@ -12,4 +12,6 @@
     <string name="students">Отметить студентов</string>
     <string name="marks">Проставить баллы</string>
     <string name="journals">Формирование журналов</string>
+
+    <string name="no_data_available">Данных нет</string>
 </resources>

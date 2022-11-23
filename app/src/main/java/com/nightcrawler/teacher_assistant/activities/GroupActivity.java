@@ -1,11 +1,8 @@
 package com.nightcrawler.teacher_assistant.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import com.nightcrawler.teacher_assistant.R;
-
 import java.util.Objects;
 
 public class GroupActivity extends AppCompatActivity {
@@ -20,7 +17,7 @@ public class GroupActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        finish();
+        onBackPressed();
         return true;
     }
 }
