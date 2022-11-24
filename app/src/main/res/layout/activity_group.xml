@@ -7,10 +7,11 @@
     tools:context=".activities.GroupActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_group_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
             android:clickable="true" app:srcCompat="@android:drawable/ic_input_add"
-            android:id="@+id/floatingActionButton"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp" android:layout_marginBottom="16dp"/>
     <androidx.recyclerview.widget.RecyclerView
@@ -23,6 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp" android:layout_marginTop="8dp" android:clipToPadding="false"
-            android:clipChildren="true" android:clickable="false" android:longClickable="false"
+            android:clipChildren="true" android:clickable="true" android:longClickable="true"
             android:overScrollMode="always"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

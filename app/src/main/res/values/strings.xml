@@ -1,12 +1,15 @@
 <resources>
     <string name="app_name">Журнал преподавателя</string>
 
+    <!-- Titles -->
     <string name="group_activity_label">Список групп</string>
 
+    <!-- Start activity options menu -->
     <string name="schedule_item">Расписание звонков</string>
     <string name="import_item">Импорт в базу данных</string>
     <string name="clear_item">Очистка базы данных</string>
 
+    <!-- Start activity menu items -->
     <string name="groups">Группы</string>
     <string name="disciplines">Дисциплины</string>
     <string name="students">Отметить студентов</string>
@@ -14,4 +17,8 @@
     <string name="journals">Формирование журналов</string>
 
     <string name="no_data_available">Данных нет</string>
+    <string name="remove">Удалить</string>
+    <string name="edit">Редактировать</string>
+
+    <string name="copyright">© 2022 Nightcrawler</string>
 </resources>
