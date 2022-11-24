@@ -1,7 +1,5 @@
 package com.nightcrawler.teacher_assistant.activities;
 
-import android.util.Log;
-import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,10 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.nightcrawler.teacher_assistant.R;
-import com.nightcrawler.teacher_assistant.database.Database;
 import com.nightcrawler.teacher_assistant.viewmodels.StartActivityViewModel;
 
 import java.util.Objects;

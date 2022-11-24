@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.nightcrawler.teacher_assistant.R;
 import com.nightcrawler.teacher_assistant.database.Group;
+import com.nightcrawler.teacher_assistant.interfaces.ItemClickListener;
+
 import org.w3c.dom.Text;
 
 import java.util.Collection;
@@ -18,6 +20,7 @@ import java.util.List;
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {
     private final List<Group> groups;
     private final MenuItem.OnMenuItemClickListener editItemListener, removalItemListener;
+    public ItemClickListener itemClickListener;
 
     public GroupAdapter(List<Group> groups, MenuItem.OnMenuItemClickListener editItemListener,
                         MenuItem.OnMenuItemClickListener removalItemListener) {
@@ -31,7 +34,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.group_list_layout, parent, false);
 
-        return new ViewHolder(view, editItemListener, removalItemListener);
+        return new ViewHolder(view, this);
     }
 
     @Override
@@ -44,23 +47,31 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
         return groups.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener
+    public static class ViewHolder extends RecyclerView.ViewHolder
+            implements View.OnCreateContextMenuListener, View.OnClickListener
     {
+        private final GroupAdapter adapter;
         private final MenuItem.OnMenuItemClickListener editItemListener, removalItemListener;
         public final TextView groupNameTextView;
-        public ViewHolder(View view, MenuItem.OnMenuItemClickListener editItemListener,
-                          MenuItem.OnMenuItemClickListener removalItemListener)
+        public ViewHolder(View view, GroupAdapter adapter)
         {
             super(view);
-            this.editItemListener = editItemListener;
-            this.removalItemListener = removalItemListener;
+
+            this.adapter = adapter;
+            this.editItemListener = adapter.editItemListener;
+            this.removalItemListener = adapter.removalItemListener;
+
             groupNameTextView = view.findViewById(R.id.group_name);
             view.setOnCreateContextMenuListener(this);
         }
 
         @Override
-        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        public void onCreateContextMenu(ContextMenu menu, View v,
+                                        ContextMenu.ContextMenuInfo menuInfo) {
             Context context = v.getContext();
+
+            v.setOnClickListener((view) -> adapter.itemClickListener
+                    .onClick(view, getAdapterPosition()));
 
             menu.add(0, getAdapterPosition(), 0, context.getString(R.string.remove)).
                     setOnMenuItemClickListener(removalItemListener);
@@ -68,5 +79,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
                     .setOnMenuItemClickListener(editItemListener);
         }
 
+        @Override
+        public void onClick(View view) {
+
+        }
     }
 }

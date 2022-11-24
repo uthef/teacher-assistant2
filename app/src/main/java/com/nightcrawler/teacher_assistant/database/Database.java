@@ -1,8 +1,14 @@
 package com.nightcrawler.teacher_assistant.database;
 
+import org.dizitart.no2.FindOptions;
 import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.SortOrder;
+import org.dizitart.no2.filters.Filters;
 import org.dizitart.no2.objects.Cursor;
+import org.dizitart.no2.objects.ObjectFilter;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.dizitart.no2.objects.filters.ObjectFilters;
+
 import java.io.File;
 import java.util.List;
 
@@ -27,7 +33,7 @@ public class Database {
 
     public List<Group> listGroups() {
         ObjectRepository<Group> repo = getGroupRepo();
-        List<Group> groups = repo.find().toList();
+        List<Group> groups = repo.find(FindOptions.sort("name", SortOrder.Ascending)).toList();
         repo.close();
         return groups;
     }
@@ -42,6 +48,21 @@ public class Database {
         ObjectRepository<Group> repo = getGroupRepo();
         repo.remove(group);
         repo.close();
+    }
+
+    public void updateGroup(Group group) {
+        ObjectRepository<Group> repo = getGroupRepo();
+        repo.update(group);
+        repo.close();
+    }
+
+    public boolean hasGroupNamed(String name) {
+        ObjectRepository<Group> repo = getGroupRepo();
+        String regex = String.format("(?i)^%s$", name);
+        Cursor<Group> cursor = repo.find(ObjectFilters.regex("name", regex),
+                FindOptions.limit(0, 1));
+        repo.close();
+        return cursor.totalCount() > 0;
     }
 
     private ObjectRepository<Group> getGroupRepo() {

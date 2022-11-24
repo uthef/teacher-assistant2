@@ -20,5 +20,17 @@
     <string name="remove">Удалить</string>
     <string name="edit">Редактировать</string>
 
+    <string name="edit_title">Редактирование</string>
+    <string name="add_group_title">Добавление новой группы</string>
+    <string name="group_name">Имя группы</string>
+    <string name="dialog_ok">Применить</string>
+    <string name="dialog_cancel">Отмена</string>
+
+    <string name="group_duplicate">Группа с таким же именем уже существует</string>
+    <string name="required_filed">Поле обязательно для заполнения</string>
+
+    <string name="add_group_action_button">Добавление новой группы</string>
+    <string name="empty">Пусто...</string>
+
     <string name="copyright">© 2022 Nightcrawler</string>
 </resources>
