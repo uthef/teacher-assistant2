@@ -7,6 +7,9 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nightcrawler.teacher_assistant.R;
 import com.nightcrawler.teacher_assistant.adapters.GroupAdapter;
@@ -21,8 +24,10 @@ public class GroupActivityViewModel extends AndroidViewModel {
     private final List<Group> groups;
     private final GroupAdapter adapter;
     private final Database dbInstance;
+    private final MutableLiveData<Integer> emptyLabelVisibility = new MutableLiveData<>();
 
     public GroupEditListener groupEditListener;
+    public final LiveData<Integer> emptyLabelState = emptyLabelVisibility;
 
     public GroupActivityViewModel(Application application) {
         super(application);
@@ -30,6 +35,8 @@ public class GroupActivityViewModel extends AndroidViewModel {
         groups = dbInstance.listGroups();
         adapter = new GroupAdapter(groups, this::editItemSelected, this::removeGroup);
         adapter.itemClickListener = this::selectGroup;
+
+        checkListState();
     }
 
     public GroupAdapter getAdapter() {
@@ -41,6 +48,7 @@ public class GroupActivityViewModel extends AndroidViewModel {
         dbInstance.removeGroup(groups.get(id));
         groups.remove(id);
         adapter.notifyItemRemoved(id);
+        checkListState();
         return true;
     }
 
@@ -49,28 +57,45 @@ public class GroupActivityViewModel extends AndroidViewModel {
         return true;
     }
 
-    public boolean updateGroup(Group group, EditText editText, String previousName) {
+    private void checkListState() {
+        if (adapter.getItemCount() == 0) {
+            emptyLabelVisibility.setValue(View.VISIBLE);
+        }
+        else {
+            emptyLabelVisibility.setValue(View.GONE);
+        }
+    }
+
+    public boolean updateGroup(Group group, EditText editText, String previousName,
+                               RecyclerView.LayoutManager layoutManager) {
         if (isGroupInvalid(group, editText, previousName)) return false;
 
         int position = groups.indexOf(group);
         groups.set(position, group);
         Collections.sort(groups, (a, b) -> a.name.compareTo(b.name));
+        int newPosition = groups.indexOf(group);
+
         adapter.notifyItemChanged(position);
-        adapter.notifyItemMoved(position, groups.indexOf(group));
+        adapter.notifyItemMoved(position, newPosition);
         dbInstance.updateGroup(group);
+        // layoutManager.scrollToPosition(newPosition);
 
         return true;
     }
 
-    public boolean addGroup(Group group, EditText editText) {
+    public boolean addGroup(Group group, EditText editText,
+                            RecyclerView.LayoutManager layoutManager) {
         if (isGroupInvalid(group, editText, null)) return false;
 
         dbInstance.addGroup(group);
         groups.add(group);
         Collections.sort(groups, (a, b) -> a.name.compareTo(b.name));
-        adapter.notifyItemInserted(groups.indexOf(group));
 
+        int position = groups.indexOf(group);
+        adapter.notifyItemInserted(position);
+        //layoutManager.scrollToPosition(position);
         editText.setError(null);
+        checkListState();
         return true;
     }
 

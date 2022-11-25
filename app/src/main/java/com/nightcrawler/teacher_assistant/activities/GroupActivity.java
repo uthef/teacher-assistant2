@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +27,8 @@ import java.util.UUID;
 public class GroupActivity extends AppCompatActivity {
     private GroupActivityViewModel viewModel;
 
+    private RecyclerView groupList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +38,16 @@ public class GroupActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(GroupActivityViewModel.class);
         viewModel.groupEditListener = this::showEditDialog;
 
-        RecyclerView groupList = findViewById(R.id.group_list);
+        groupList = findViewById(R.id.group_list);
         FloatingActionButton addGroupButton = findViewById(R.id.add_group_button);
         addGroupButton.setOnClickListener((v) -> showInsertionDialog());
 
-        groupList.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        groupList.setLayoutManager(layoutManager);
         groupList.setAdapter(viewModel.getAdapter());
+
+        viewModel.emptyLabelState.observe(this,
+                (value) -> findViewById(R.id.empty_group_list_info).setVisibility(value));
     }
 
     private void showEditDialog(Group group) {
@@ -66,7 +74,8 @@ public class GroupActivity extends AppCompatActivity {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener((v) -> {
             String previousName = group.name;
             group.name = editText.getText().toString();
-            if (viewModel.updateGroup(group, editText, previousName)) dialog.dismiss();
+            if (viewModel.updateGroup(group, editText, previousName, groupList.getLayoutManager()))
+                dialog.dismiss();
         });
     }
 
@@ -91,7 +100,8 @@ public class GroupActivity extends AppCompatActivity {
 
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener((v) -> {
             Group group = new Group(editText.getText().toString());
-            if (viewModel.addGroup(group, editText)) dialog.dismiss();
+            if (viewModel.addGroup(group, editText, groupList.getLayoutManager()))
+                dialog.dismiss();
         });
     }
 
