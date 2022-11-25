@@ -2,6 +2,7 @@ package com.nightcrawler.teacher_assistant.database;
 
 import org.dizitart.no2.FindOptions;
 import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.NitriteId;
 import org.dizitart.no2.SortOrder;
 import org.dizitart.no2.filters.Filters;
 import org.dizitart.no2.objects.Cursor;
@@ -63,6 +64,19 @@ public class Database {
                 FindOptions.limit(0, 1));
         repo.close();
         return cursor.totalCount() > 0;
+    }
+
+    public List<Student> listStudents(NitriteId groupId) {
+        ObjectRepository<Student> students = getStudentRepo();
+        Cursor<Student> cursor = students.find(ObjectFilters.eq("groupId", groupId));
+        students.close();
+        return cursor.toList();
+    }
+
+    public void addStudent(Student student) {
+        ObjectRepository<Student> students = getStudentRepo();
+        students.insert(student);
+        students.close();
     }
 
     private ObjectRepository<Group> getGroupRepo() {
