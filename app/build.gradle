@@ -15,9 +15,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-    }
 
     buildTypes {
         release {
@@ -34,7 +31,7 @@ android {
 dependencies {
     // my dependencies
     implementation 'org.dizitart:nitrite:3.4.4'
-    implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.14'
+    implementation 'com.tom-roush:pdfbox-android:2.0.25.0'
 
     // default
     implementation 'androidx.appcompat:appcompat:1.5.1'
