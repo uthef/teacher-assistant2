@@ -5,6 +5,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nightcrawler.teacher_assistant.R;
 import com.nightcrawler.teacher_assistant.adapters.GroupAdapter;
 import com.nightcrawler.teacher_assistant.database.Database;
+import com.nightcrawler.teacher_assistant.database.LocalDatabase;
 import com.nightcrawler.teacher_assistant.database.Group;
 import com.nightcrawler.teacher_assistant.interfaces.GroupEditListener;
 
@@ -31,7 +33,7 @@ public class GroupActivityViewModel extends AndroidViewModel {
 
     public GroupActivityViewModel(Application application) {
         super(application);
-        dbInstance = Database.getInstance();
+        dbInstance = LocalDatabase.getInstance();
         groups = dbInstance.listGroups();
         adapter = new GroupAdapter(groups, this::editItemSelected, this::removeGroup);
         adapter.itemClickListener = this::selectGroup;

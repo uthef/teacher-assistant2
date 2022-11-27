@@ -30,4 +30,7 @@ public class Student implements Serializable {
     public NitriteId getId() {
         return id;
     }
+    public String getFullName() {
+        return String.format("%s %s %s", firstName, middleName, lastName);
+    }
 }

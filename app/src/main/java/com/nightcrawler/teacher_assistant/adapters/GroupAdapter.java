@@ -48,7 +48,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
-            implements View.OnCreateContextMenuListener, View.OnClickListener
+            implements View.OnCreateContextMenuListener
     {
         private final GroupAdapter adapter;
         private final MenuItem.OnMenuItemClickListener editItemListener, removalItemListener;
@@ -63,6 +63,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
 
             groupNameTextView = view.findViewById(R.id.group_name);
             view.setOnCreateContextMenuListener(this);
+            view.setOnClickListener((v) -> adapter.itemClickListener.onClick(v, getAdapterPosition()));
         }
 
         @Override
@@ -70,18 +71,12 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
                                         ContextMenu.ContextMenuInfo menuInfo) {
             Context context = v.getContext();
 
-            v.setOnClickListener((view) -> adapter.itemClickListener
-                    .onClick(view, getAdapterPosition()));
+            menu.setHeaderTitle(adapter.groups.get(getAdapterPosition()).name);
 
             menu.add(0, getAdapterPosition(), 0, context.getString(R.string.remove)).
                     setOnMenuItemClickListener(removalItemListener);
             menu.add(0, getAdapterPosition(), 0, context.getString(R.string.edit))
                     .setOnMenuItemClickListener(editItemListener);
-        }
-
-        @Override
-        public void onClick(View view) {
-
         }
     }
 }

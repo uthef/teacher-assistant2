@@ -3,14 +3,17 @@ package com.nightcrawler.teacher_assistant.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import androidx.lifecycle.ViewModelProvider;
 import com.nightcrawler.teacher_assistant.R;
 import com.nightcrawler.teacher_assistant.viewmodels.StartActivityViewModel;
+
 import java.util.Objects;
 
 public class StartActivity extends AppCompatActivity {
@@ -45,6 +48,8 @@ public class StartActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.export_groups_item) {
+        }
         return true;
     }
 }
