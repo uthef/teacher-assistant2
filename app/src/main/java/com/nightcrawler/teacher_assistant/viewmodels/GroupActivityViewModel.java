@@ -5,7 +5,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -18,6 +17,7 @@ import com.nightcrawler.teacher_assistant.database.Database;
 import com.nightcrawler.teacher_assistant.database.LocalDatabase;
 import com.nightcrawler.teacher_assistant.database.Group;
 import com.nightcrawler.teacher_assistant.interfaces.GroupEditListener;
+import com.nightcrawler.teacher_assistant.interfaces.GroupSelectionListener;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +29,7 @@ public class GroupActivityViewModel extends AndroidViewModel {
     private final MutableLiveData<Integer> emptyLabelVisibility = new MutableLiveData<>();
 
     public GroupEditListener groupEditListener;
+    public GroupSelectionListener groupSelectionListener;
     public final LiveData<Integer> emptyLabelState = emptyLabelVisibility;
 
     public GroupActivityViewModel(Application application) {
@@ -110,7 +111,7 @@ public class GroupActivityViewModel extends AndroidViewModel {
         }
 
         if (previousName != null
-                && previousName.trim().toLowerCase().equals(group.name.toLowerCase())) {
+                && previousName.trim().equalsIgnoreCase(group.name)) {
             return false;
         }
 
@@ -124,6 +125,6 @@ public class GroupActivityViewModel extends AndroidViewModel {
     }
 
     private void selectGroup(View view, int position) {
-
+        groupSelectionListener.invoke(groups.get(position));
     }
 }

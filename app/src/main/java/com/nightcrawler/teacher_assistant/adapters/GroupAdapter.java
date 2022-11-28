@@ -1,20 +1,13 @@
 package com.nightcrawler.teacher_assistant.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.*;
-
-import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.nightcrawler.teacher_assistant.R;
 import com.nightcrawler.teacher_assistant.database.Group;
 import com.nightcrawler.teacher_assistant.interfaces.ItemClickListener;
-
-import org.w3c.dom.Text;
-
-import java.util.Collection;
 import java.util.List;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {
@@ -67,8 +60,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
         }
 
         @Override
-        public void onCreateContextMenu(ContextMenu menu, View v,
-                                        ContextMenu.ContextMenuInfo menuInfo) {
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             Context context = v.getContext();
 
             menu.setHeaderTitle(adapter.groups.get(getAdapterPosition()).name);

@@ -8,17 +8,16 @@ import java.io.Serializable;
 public class Student implements Serializable {
     @Id
     private NitriteId id;
-    public NitriteId groupId;
-
+    public String groupName;
     public String firstName, middleName, lastName;
     public Subgroup subgroup;
     public int variant, kp;
 
     private Student() {}
 
-    public Student(NitriteId groupId, String firstName, String middleName, String lastName,
+    public Student(String groupId, String firstName, String middleName, String lastName,
                    Subgroup subgroup, int variant, int kp) {
-        this.groupId = groupId;
+        this.groupName = groupId;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;

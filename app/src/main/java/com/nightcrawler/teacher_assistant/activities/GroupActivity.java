@@ -2,6 +2,7 @@ package com.nightcrawler.teacher_assistant.activities;
 
 import android.app.AlertDialog;
 
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
@@ -37,6 +38,7 @@ public class GroupActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         viewModel = new ViewModelProvider(this).get(GroupActivityViewModel.class);
         viewModel.groupEditListener = this::showEditDialog;
+        viewModel.groupSelectionListener = this::goToStudentActivity;
 
         groupList = findViewById(R.id.group_list);
         FloatingActionButton addGroupButton = findViewById(R.id.add_group_button);
@@ -103,6 +105,12 @@ public class GroupActivity extends AppCompatActivity {
             if (viewModel.addGroup(group, editText, groupList.getLayoutManager()))
                 dialog.dismiss();
         });
+    }
+
+    private void goToStudentActivity(Group group) {
+        Intent intent = new Intent(this, StudentActivity.class);
+        intent.putExtra("group", group);
+        startActivity(intent);
     }
 
     @Override

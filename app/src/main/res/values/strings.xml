@@ -26,6 +26,8 @@
     <string name="dialog_ok">Применить</string>
     <string name="dialog_cancel">Отмена</string>
 
+    <string name="group">Группа</string>
+
     <string name="group_duplicate">Группа с таким же именем уже существует</string>
     <string name="required_filed">Поле обязательно для заполнения</string>
 

@@ -2,7 +2,6 @@ package com.nightcrawler.teacher_assistant.database;
 
 import org.dizitart.no2.FindOptions;
 import org.dizitart.no2.Nitrite;
-import org.dizitart.no2.NitriteId;
 import org.dizitart.no2.SortOrder;
 import org.dizitart.no2.objects.Cursor;
 import org.dizitart.no2.objects.ObjectRepository;
@@ -44,9 +43,12 @@ public class LocalDatabase implements Database {
     }
 
     public void removeGroup(Group group) {
-        ObjectRepository<Group> repo = getGroupRepo();
-        repo.remove(group);
-        repo.close();
+        ObjectRepository<Group> groupRepo = getGroupRepo();
+        ObjectRepository<Student> studentRepo = getStudentRepo();
+        studentRepo.remove(ObjectFilters.eq("groupName", group.name));
+        groupRepo.remove(group);
+        studentRepo.close();
+        groupRepo.close();
     }
 
     public void updateGroup(Group group) {
@@ -64,9 +66,9 @@ public class LocalDatabase implements Database {
         return cursor.totalCount() > 0;
     }
 
-    public List<Student> listStudents(Object groupId) {
+    public List<Student> listStudents(String groupName) {
         ObjectRepository<Student> students = getStudentRepo();
-        Cursor<Student> cursor = students.find(ObjectFilters.eq("groupId", groupId));
+        Cursor<Student> cursor = students.find(ObjectFilters.eq("groupName", groupName));
         students.close();
         return cursor.toList();
     }
