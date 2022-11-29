@@ -36,6 +36,11 @@ public class StartActivity extends AppCompatActivity {
             Intent intent = new Intent(StartActivity.this, GroupActivity.class);
             startActivity(intent);
         });
+
+        findViewById(R.id.schedule_button).setOnClickListener((v) -> {
+            Intent intent = new Intent(StartActivity.this, ScheduleActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -43,13 +48,6 @@ public class StartActivity extends AppCompatActivity {
         // Setting action bar options menu
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.start_activity_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.export_groups_item) {
-        }
         return true;
     }
 }

@@ -1,5 +1,7 @@
 package com.nightcrawler.teacher_assistant.database;
 
+import android.annotation.SuppressLint;
+
 import org.dizitart.no2.FindOptions;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.NitriteId;
@@ -9,11 +11,18 @@ import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class LocalDatabase implements Database {
     private final Nitrite nitrite;
     private static volatile LocalDatabase instance = null;
+    public final static List<Lesson> DefaultLessons = new ArrayList<>();
+
     public static void initialize(File file) {
         if (instance == null) {
             instance = new LocalDatabase(file);
@@ -96,11 +105,38 @@ public class LocalDatabase implements Database {
         students.close();
     }
 
+    public List<Lesson> listLessons() {
+        ObjectRepository<Lesson> lessons = getLessonRepo();
+        Cursor<Lesson> foundLessons = lessons.find();
+        lessons.close();
+        return foundLessons.toList();
+    }
+
     private ObjectRepository<Group> getGroupRepo() {
         return nitrite.getRepository(Group.class);
     }
 
     private ObjectRepository<Student> getStudentRepo() {
         return nitrite.getRepository(Student.class);
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private ObjectRepository<Lesson> getLessonRepo() {
+        ObjectRepository<Lesson> lessons = nitrite.getRepository(Lesson.class);
+        if (lessons.size() == 0) {
+            DateFormat df = new SimpleDateFormat("HH:mm");
+
+            try {
+                Lesson[] sampleLessons = {
+                        new Lesson(df.parse("08:30"), df.parse("10:05")),
+                        new Lesson(df.parse("10:10"), df.parse("11:30"))
+                };
+
+                lessons.insert(sampleLessons);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return lessons;
     }
 }

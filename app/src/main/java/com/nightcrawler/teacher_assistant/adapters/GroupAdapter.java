@@ -46,6 +46,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
         private final GroupAdapter adapter;
         private final MenuItem.OnMenuItemClickListener editItemListener, removalItemListener;
         public final TextView groupNameTextView;
+
         public ViewHolder(View view, GroupAdapter adapter)
         {
             super(view);

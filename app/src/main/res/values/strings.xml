@@ -49,6 +49,11 @@
 
     <string name="variant_full_label">Вариант</string>
 
+    <string name="schedule">Расписание звонков</string>
+    <string name="lesson_number">Номер урока</string>
+    <string name="lesson_start_time">Начало урока</string>
+    <string name="lesson_end_time">Конец урока</string>
+
     <string name="empty">
         Пусто… Используйте кнопку в правом нижнем углу для добавления элементов.
     </string>

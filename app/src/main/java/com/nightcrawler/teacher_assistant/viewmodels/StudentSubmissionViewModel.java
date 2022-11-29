@@ -32,9 +32,13 @@ public class StudentSubmissionViewModel extends AndroidViewModel {
                                   TextInputLayout variantInput,
                                   TextInputLayout kpInput, @Nullable Student student) {
 
-        String firstName = Objects.requireNonNull(firstNameLayout.getEditText()).getText().toString(),
-                middleName = Objects.requireNonNull(middleNameLayout.getEditText()).getText().toString(),
-                lastName = Objects.requireNonNull(lastNameLayout.getEditText()).getText().toString();
+        String firstName =
+                Objects.requireNonNull(firstNameLayout.getEditText())
+                        .getText().toString().trim(),
+                middleName = Objects.requireNonNull(middleNameLayout.getEditText())
+                        .getText().toString().trim(),
+                lastName = Objects.requireNonNull(lastNameLayout.getEditText())
+                        .getText().toString().trim();
 
         String reqField = getApplication().getString(R.string.required_filed);
 
@@ -43,19 +47,19 @@ public class StudentSubmissionViewModel extends AndroidViewModel {
         Subgroup subgroup = firstChild.isChecked() ? Subgroup.First : Subgroup.Second;
         boolean valid = true;
 
-        if (firstName.trim().length() == 0) {
+        if (firstName.length() == 0) {
             valid = false;
             firstNameLayout.setError(reqField);
         }
         else firstNameLayout.setError(null);
 
-        if (middleName.trim().length() == 0) {
+        if (middleName.length() == 0) {
             valid = false;
             middleNameLayout.setError(reqField);
         }
         else middleNameLayout.setError(null);
 
-        if (lastName.trim().length() == 0) {
+        if (lastName.length() == 0) {
             valid = false;
             lastNameLayout.setError(reqField);
         }
@@ -95,6 +99,5 @@ public class StudentSubmissionViewModel extends AndroidViewModel {
         }
 
         return null;
-
     }
 }
