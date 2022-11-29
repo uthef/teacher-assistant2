@@ -15,39 +15,32 @@
     <string name="students">Отметить студентов</string>
     <string name="marks">Проставить баллы</string>
     <string name="journals">Формирование журналов</string>
-
-    <string name="no_data_available">Данных нет</string>
-    <string name="remove">Удалить</string>
-    <string name="edit">Редактировать</string>
-
-    <string name="edit_title">Редактирование</string>
     <string name="add_group_title">Добавление новой группы</string>
     <string name="group_name">Имя группы</string>
-    <string name="dialog_ok">Применить</string>
-    <string name="dialog_cancel">Отмена</string>
-
     <string name="group">Группа</string>
-
     <string name="group_duplicate">Группа с таким же именем уже существует</string>
-    <string name="required_filed">Поле обязательно для заполнения</string>
 
     <string name="add_group_action_button">Добавление новой группы</string>
     <string name="add_student_title">Новый студент</string>
     <string name="edit_student_title">Изменить студента</string>
+    <string name="first_name">Имя</string>
+    <string name="middle_name">Отчество</string>
+    <string name="last_name">Фамилия</string>
+    <string name="first_subgroup">Подгруппа 1</string>
+    <string name="second_subgroup">Подгруппа 2</string>
+    <string name="variant_full_label">Вариант</string>
     <string name="subgroup_label">Подгруппа</string>
     <string name="variant_label">В</string>
     <string name="kp_label">КП</string>
 
-    <string name="first_name">Имя</string>
-    <string name="middle_name">Отчество</string>
-    <string name="last_name">Фамилия</string>
-
+    <string name="required_filed">Поле обязательно для заполнения</string>
     <string name="save">Сохранить</string>
-
-    <string name="first_subgroup">Подгруппа 1</string>
-    <string name="second_subgroup">Подгруппа 2</string>
-
-    <string name="variant_full_label">Вариант</string>
+    <string name="dialog_ok">Применить</string>
+    <string name="dialog_cancel">Отмена</string>
+    <string name="no_data_available">Данных нет</string>
+    <string name="remove">Удалить</string>
+    <string name="edit">Редактировать</string>
+    <string name="edit_title">Редактирование</string>
 
     <string name="schedule">Расписание звонков</string>
     <string name="lesson_number">Номер урока</string>
