@@ -36,10 +36,10 @@ public class Student implements Serializable {
         return id;
     }
     public String getFullName() {
-        return String.format("%s %s %s", firstName, middleName, lastName);
+        return String.format("%s %s %s", lastName, firstName, middleName);
     }
     public String getInfo(String subgroupLabel, String variantLabel, String kpLabel) {
         return String.format("%s %s, %s%s, %s%s",
-                subgroupLabel, subgroup, variant, variantLabel, kp, kpLabel);
+                subgroupLabel, subgroup.number, variantLabel, variant, kpLabel, kp);
     }
 }

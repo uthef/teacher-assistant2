@@ -9,6 +9,7 @@ public interface Database {
     void updateGroup(Group group);
     boolean hasGroupNamed(String name);
     List<Student> listStudents(Object id);
-    List<Student> listAllStudents();
+    void updateStudent(Student student);
     void addStudent(Student student);
+    void removeStudent(Student student);
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -24,6 +25,9 @@ public class StudentSubmissionActivity extends AppCompatActivity {
     private Group group;
     private TextInputLayout firstNameInput, lastNameInput, middleNameInput, variantInput, kpInput;
     private RadioGroup subgroupRadio;
+    private boolean editMode = false;
+    private Student student;
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +37,6 @@ public class StudentSubmissionActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(StudentSubmissionViewModel.class);
 
         Intent intent = getIntent();
-
-        if (intent.hasExtra("student")) {
-            Student student = (Student) intent.getSerializableExtra("student");
-            setTitle(getString(R.string.edit_student_title));
-        }
-        else {
-            setTitle(getString(R.string.add_student_title));
-        }
-
         TextView textView = findViewById(R.id.group_label);
 
         firstNameInput = findViewById(R.id.name_input);
@@ -50,6 +45,25 @@ public class StudentSubmissionActivity extends AppCompatActivity {
         variantInput = findViewById(R.id.variant_input);
         kpInput = findViewById(R.id.kp_input);
         subgroupRadio = findViewById(R.id.subgroup_radio);
+
+        if (intent.hasExtra("student")) {
+            student = (Student) intent.getSerializableExtra("student");
+            position = intent.getIntExtra("position", -1);
+
+            setTitle(getString(R.string.edit_student_title));
+            editMode = true;
+
+            Objects.requireNonNull(firstNameInput.getEditText()).setText(student.firstName);
+            Objects.requireNonNull(middleNameInput.getEditText()).setText(student.middleName);
+            Objects.requireNonNull(lastNameInput.getEditText()).setText(student.lastName);
+            Objects.requireNonNull(kpInput.getEditText()).setText(String.valueOf(student.kp));
+            Objects.requireNonNull(variantInput.getEditText()).setText(String.valueOf(student.variant));
+            RadioButton rb = (RadioButton) subgroupRadio.getChildAt(student.subgroup.number - 1);
+            rb.setChecked(true);
+        }
+        else {
+            setTitle(getString(R.string.add_student_title));
+        }
 
         group = (Group) intent.getSerializableExtra("group");
         textView.setText(String.format("%s %s", getString(R.string.group), group.name));
@@ -69,17 +83,32 @@ public class StudentSubmissionActivity extends AppCompatActivity {
             onBackPressed();
         }
         else if (item.getItemId() == R.id.save_student_item) {
-            Student student = viewModel.validateFields(group.getId().getIdValue(),
-                    firstNameInput,
-                    middleNameInput,
-                    lastNameInput,
-                    subgroupRadio,
-                    variantInput,
-                    kpInput);
+            Student student = null;
+            Intent intent = new Intent();
+
+            if (editMode) {
+                intent.putExtra("editMode", true);
+                student = viewModel.validateFields(group.getId().getIdValue(),
+                        firstNameInput,
+                        middleNameInput,
+                        lastNameInput,
+                        subgroupRadio,
+                        variantInput,
+                        kpInput, this.student);
+            }
+            else {
+                student = viewModel.validateFields(group.getId().getIdValue(),
+                        firstNameInput,
+                        middleNameInput,
+                        lastNameInput,
+                        subgroupRadio,
+                        variantInput,
+                        kpInput, null);
+            }
 
             if (student != null) {
-                Intent intent = new Intent();
                 intent.putExtra("student", student);
+                intent.putExtra("position", position);
                 setResult(RESULT_OK, intent);
                 onBackPressed();
             }

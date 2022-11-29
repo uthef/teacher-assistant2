@@ -70,19 +70,29 @@ public class LocalDatabase implements Database {
     public List<Student> listStudents(Object id) {
         ObjectRepository<Student> students = getStudentRepo();
         NitriteId nitriteId = (NitriteId) id;
-        Cursor<Student> cursor = students.find(ObjectFilters.eq("groupId", nitriteId.getIdValue()));
+        Cursor<Student> cursor = students.find(
+                ObjectFilters.eq("groupId", nitriteId.getIdValue()),
+                FindOptions.sort("lastName", SortOrder.Ascending)
+        );
         students.close();
         return cursor.toList();
     }
-    public List<Student> listAllStudents() {
+
+    public void updateStudent(Student student) {
         ObjectRepository<Student> students = getStudentRepo();
-        Cursor<Student> cursor = students.find();
-        return cursor.toList();
+        students.update(student);
+        students.close();
     }
 
     public void addStudent(Student student) {
         ObjectRepository<Student> students = getStudentRepo();
         students.insert(student);
+        students.close();
+    }
+
+    public void removeStudent(Student student) {
+        ObjectRepository<Student> students = getStudentRepo();
+        students.remove(student);
         students.close();
     }
 
