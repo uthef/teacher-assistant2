@@ -18,7 +18,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="?android:attr/listDivider" />
+            android:background="?android:colorButtonNormal" />
         <TextView
             android:id="@+id/schedule_start_time"
             android:focusable="true"
@@ -33,7 +33,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="?android:attr/listDivider" />
+            android:background="?android:colorButtonNormal" />
         <TextView
             android:id="@+id/schedule_end_time"
             android:focusable="true"
@@ -49,5 +49,5 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
+        android:background="?android:colorButtonNormal" />
 </LinearLayout>

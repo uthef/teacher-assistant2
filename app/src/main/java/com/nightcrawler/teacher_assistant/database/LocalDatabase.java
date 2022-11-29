@@ -2,6 +2,9 @@ package com.nightcrawler.teacher_assistant.database;
 
 import android.annotation.SuppressLint;
 
+import android.content.res.Resources;
+import androidx.annotation.Nullable;
+import com.nightcrawler.teacher_assistant.R;
 import org.dizitart.no2.FindOptions;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.NitriteId;
@@ -21,7 +24,8 @@ import java.util.Locale;
 public class LocalDatabase implements Database {
     private final Nitrite nitrite;
     private static volatile LocalDatabase instance = null;
-    public final static List<Lesson> DefaultLessons = new ArrayList<>();
+    @Nullable
+    public String[] defaultLessonDurations = null;
 
     public static void initialize(File file) {
         if (instance == null) {
@@ -123,16 +127,15 @@ public class LocalDatabase implements Database {
     @SuppressLint("SimpleDateFormat")
     private ObjectRepository<Lesson> getLessonRepo() {
         ObjectRepository<Lesson> lessons = nitrite.getRepository(Lesson.class);
-        if (lessons.size() == 0) {
+        if (lessons.size() == 0 && defaultLessonDurations != null) {
             DateFormat df = new SimpleDateFormat("HH:mm");
-
             try {
-                Lesson[] sampleLessons = {
-                        new Lesson(df.parse("08:30"), df.parse("10:05")),
-                        new Lesson(df.parse("10:10"), df.parse("11:30"))
-                };
+                for (int i = 0; i < defaultLessonDurations.length; i += 2) {
+                    lessons.insert(
+                            new Lesson(df.parse(defaultLessonDurations[i]), df.parse(defaultLessonDurations[i + 1]))
+                    );
+                }
 
-                lessons.insert(sampleLessons);
             } catch (ParseException e) {
                 e.printStackTrace();
             }

@@ -48,8 +48,15 @@
     <string name="lesson_end_time">Конец урока</string>
 
     <string name="empty">
-        Пусто… Используйте кнопку в правом нижнем углу для добавления элементов.
+        Пусто. Используйте кнопку в правом нижнем углу для добавления элементов.
     </string>
+
+    <string-array name="lesson_durations">
+        <item>08:30</item>
+        <item>10:05</item>
+        <item>10:10</item>
+        <item>11:30</item>
+    </string-array>
 
     <string name="copyright">© 2022 Nightcrawler</string>
 </resources>
