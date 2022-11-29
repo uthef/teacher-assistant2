@@ -32,6 +32,23 @@
     <string name="required_filed">Поле обязательно для заполнения</string>
 
     <string name="add_group_action_button">Добавление новой группы</string>
+    <string name="add_student_title">Новый студент</string>
+    <string name="edit_student_title">Изменить студента</string>
+    <string name="subgroup_label">Подгруппа</string>
+    <string name="variant_label">В</string>
+    <string name="kp_label">КП</string>
+
+    <string name="first_name">Имя</string>
+    <string name="middle_name">Отчество</string>
+    <string name="last_name">Фамилия</string>
+
+    <string name="save">Сохранить</string>
+
+    <string name="first_subgroup">Подгруппа 1</string>
+    <string name="second_subgroup">Подгруппа 2</string>
+
+    <string name="variant_full_label">Вариант</string>
+
     <string name="empty">
         Пусто… Используйте кнопку в правом нижнем углу для добавления элементов.
     </string>

@@ -5,14 +5,10 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,13 +16,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nightcrawler.teacher_assistant.R;
 import com.nightcrawler.teacher_assistant.database.Group;
-import com.nightcrawler.teacher_assistant.viewmodels.GroupActivityViewModel;
+import com.nightcrawler.teacher_assistant.viewmodels.GroupViewModel;
 
 import java.util.Objects;
-import java.util.UUID;
 
 public class GroupActivity extends AppCompatActivity {
-    private GroupActivityViewModel viewModel;
+    private GroupViewModel viewModel;
 
     private RecyclerView groupList;
 
@@ -36,7 +31,7 @@ public class GroupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_group);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        viewModel = new ViewModelProvider(this).get(GroupActivityViewModel.class);
+        viewModel = new ViewModelProvider(this).get(GroupViewModel.class);
         viewModel.groupEditListener = this::showEditDialog;
         viewModel.groupSelectionListener = this::goToStudentActivity;
 

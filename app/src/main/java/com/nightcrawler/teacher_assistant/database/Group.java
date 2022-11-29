@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Indices({
-        @Index(value = "name", type = IndexType.Unique)
+        @Index(value = "name", type = IndexType.Unique),
 })
 public class Group implements Serializable {
     @Id

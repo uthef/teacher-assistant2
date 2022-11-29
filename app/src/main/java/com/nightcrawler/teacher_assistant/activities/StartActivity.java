@@ -12,19 +12,19 @@ import android.view.MenuItem;
 
 import androidx.lifecycle.ViewModelProvider;
 import com.nightcrawler.teacher_assistant.R;
-import com.nightcrawler.teacher_assistant.viewmodels.StartActivityViewModel;
+import com.nightcrawler.teacher_assistant.viewmodels.StartViewModel;
 
 import java.util.Objects;
 
 public class StartActivity extends AppCompatActivity {
 
-    StartActivityViewModel viewModel;
+    StartViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        viewModel = new ViewModelProvider(this).get(StartActivityViewModel.class);
+        viewModel = new ViewModelProvider(this).get(StartViewModel.class);
 
         // Setting action bar icon
         ActionBar actionBar = Objects.requireNonNull(getSupportActionBar());

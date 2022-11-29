@@ -8,6 +8,7 @@ public interface Database {
     void removeGroup(Group group);
     void updateGroup(Group group);
     boolean hasGroupNamed(String name);
-    List<Student> listStudents(String groupId);
+    List<Student> listStudents(Object id);
+    List<Student> listAllStudents();
     void addStudent(Student student);
 }

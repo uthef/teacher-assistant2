@@ -15,10 +15,20 @@
         <entry key="..\:/Users/User/teacher-assistant/app/src/main/res/layout/activity_start.xml" value="0.33" />
         <entry key="..\:/Users/User/teacher-assistant/app/src/main/res/layout/edit_group_layout.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/User/teacher-assistant/app/src/main/res/menu/start_activity_menu.xml" value="0.3614583333333333" />
+        <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/drawable/ic_baseline_book_24.xml" value="0.4845" />
+        <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/drawable/ic_baseline_menu_book_24.xml" value="0.4845" />
+        <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.4845" />
+        <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/drawable/ic_baseline_school_24.xml" value="0.4845" />
         <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/font/times_new_roman.xml" value="0.5744791666666667" />
+        <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/layout/activity_group.xml" value="0.5453125" />
         <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/layout/activity_start.xml" value="0.559375" />
+        <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/layout/activity_student.xml" value="0.5453125" />
+        <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/layout/activity_student_submission.xml" value="0.5453125" />
+        <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/layout/edit_group_layout.xml" value="0.559375" />
         <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/layout/group_list_layout.xml" value="0.3016304347826087" />
+        <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/layout/student_action_bar.xml" value="0.559375" />
         <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/layout/student_list_layout.xml" value="0.5453125" />
+        <entry key="..\:/Users/denbr/teacher-assistant/app/src/main/res/menu/student_action_bar_menu.xml" value="0.5729166666666666" />
       </map>
     </option>
   </component>

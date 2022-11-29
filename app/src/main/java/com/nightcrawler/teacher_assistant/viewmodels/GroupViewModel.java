@@ -22,7 +22,7 @@ import com.nightcrawler.teacher_assistant.interfaces.GroupSelectionListener;
 import java.util.Collections;
 import java.util.List;
 
-public class GroupActivityViewModel extends AndroidViewModel {
+public class GroupViewModel extends AndroidViewModel {
     private final List<Group> groups;
     private final GroupAdapter adapter;
     private final Database dbInstance;
@@ -32,7 +32,7 @@ public class GroupActivityViewModel extends AndroidViewModel {
     public GroupSelectionListener groupSelectionListener;
     public final LiveData<Integer> emptyLabelState = emptyLabelVisibility;
 
-    public GroupActivityViewModel(Application application) {
+    public GroupViewModel(Application application) {
         super(application);
         dbInstance = LocalDatabase.getInstance();
         groups = dbInstance.listGroups();
