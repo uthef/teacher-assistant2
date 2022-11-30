@@ -1,4 +1,4 @@
-package com.nightcrawler.teacher_assistant.interfaces;
+package com.nightcrawler.teacher_assistant.listeners;
 
 import com.nightcrawler.teacher_assistant.database.Group;
 

@@ -116,6 +116,12 @@ public class LocalDatabase implements Database {
         return foundLessons.toList();
     }
 
+    public void updateLesson(Lesson lesson) {
+        ObjectRepository<Lesson> lessons = getLessonRepo();
+        lessons.update(lesson);
+        lessons.close();
+    }
+
     private ObjectRepository<Group> getGroupRepo() {
         return nitrite.getRepository(Group.class);
     }

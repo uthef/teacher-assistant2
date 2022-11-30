@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nightcrawler.teacher_assistant.R;
 import com.nightcrawler.teacher_assistant.database.Student;
-import com.nightcrawler.teacher_assistant.interfaces.ItemClickListener;
-import com.nightcrawler.teacher_assistant.interfaces.StudentEditListener;
+import com.nightcrawler.teacher_assistant.listeners.StudentEditListener;
 
 import java.util.List;
 

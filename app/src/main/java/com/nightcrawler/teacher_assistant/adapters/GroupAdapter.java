@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.nightcrawler.teacher_assistant.R;
 import com.nightcrawler.teacher_assistant.database.Group;
-import com.nightcrawler.teacher_assistant.interfaces.ItemClickListener;
+import com.nightcrawler.teacher_assistant.listeners.ItemClickListener;
 import java.util.List;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {

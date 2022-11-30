@@ -16,8 +16,8 @@ import com.nightcrawler.teacher_assistant.adapters.GroupAdapter;
 import com.nightcrawler.teacher_assistant.database.Database;
 import com.nightcrawler.teacher_assistant.database.LocalDatabase;
 import com.nightcrawler.teacher_assistant.database.Group;
-import com.nightcrawler.teacher_assistant.interfaces.GroupEditListener;
-import com.nightcrawler.teacher_assistant.interfaces.GroupSelectionListener;
+import com.nightcrawler.teacher_assistant.listeners.GroupEditListener;
+import com.nightcrawler.teacher_assistant.listeners.GroupSelectionListener;
 
 import java.util.Collections;
 import java.util.List;
@@ -99,6 +99,7 @@ public class GroupViewModel extends AndroidViewModel {
         //layoutManager.scrollToPosition(position);
         editText.setError(null);
         checkListState();
+        System.out.println("dfdfdffdd");
         return true;
     }
 

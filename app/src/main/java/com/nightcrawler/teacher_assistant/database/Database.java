@@ -13,4 +13,5 @@ public interface Database {
     void addStudent(Student student);
     void removeStudent(Student student);
     List<Lesson> listLessons();
+    public void updateLesson(Lesson lesson);
 }
